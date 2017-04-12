@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Development Target for Meister</title>
+        <script src="build/meister.bundled.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <div id="meister"></div>
+        <script type="text/javascript">
+            var meister = new Meister('#meister');
+
+            meister.setItem({
+                src:'http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4',
+                type: 'mp4'
+            });
+
+            meister.load();
+        </script>
+    </body>
+</html>
