@@ -23,25 +23,24 @@
   "author": "Triple",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@npm-wearetriple/gulp-browsersync-task": "^1.0.1",
-    "@npm-wearetriple/gulp-webpack-tasks": "^1.0.6",
-    "@npm-wearetriple/js-dev": "^3.1.0",
+    "meister-gulp-webpack-tasks": "^1.0.6",
+    "meister-js-dev": "^3.1.0",
     "@npm-wearetriple/meister-doc-builder": "^1.0.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-es2017": "^6.22.0",
     "gulp": "^3.9.1"
   },
   "dependencies": {
-    "@npm-wearetriple/meisterplayer": "^4.9.3",
-    "@npm-wearetriple/meister-plugin-basemedia": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-html5player": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-standardui": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-nativehls": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-hls": "^1.0.1",
-    "@npm-wearetriple/meister-plugin-dash": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-multisource": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-webvtt": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-debugoverlay": "^1.0.0",
-    "@npm-wearetriple/meister-plugin-smooth": "^1.0.0"
+    "meisterplayer": "^5.0.1",
+    "meister-plugin-basemedia": "^5.0.2",
+    "meister-plugin-html5player": "^5.0.2",
+    "meister-plugin-standardui": "^5.0.1",
+    "meister-plugin-nativehls": "^5.0.1",
+    "meister-plugin-hls": "^5.0.2",
+    "meister-plugin-dash": "^5.0.1",
+    "meister-plugin-multisource": "^5.0.1",
+    "meister-plugin-webvtt": "^5.0.1",
+    "meister-plugin-debugoverlay": "^5.0.1",
+    "meister-plugin-smooth": "^5.0.1"
   }
 }
