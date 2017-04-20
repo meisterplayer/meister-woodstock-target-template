@@ -24,6 +24,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "meister-gulp-webpack-tasks": "^1.0.6",
+    "meister-gulp-browsersync-task": "^1.0.1",
     "meister-js-dev": "^3.1.0",
     "meister-doc-builder": "^1.0.1",
     "babel-preset-es2015": "^6.24.0",

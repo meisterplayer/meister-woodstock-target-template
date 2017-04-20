@@ -1,8 +1,8 @@
 const gulp = require('gulp');
-const tripleGulp = require('@npm-wearetriple/js-dev').gulp;
-const webpackTask = require('@npm-wearetriple/gulp-webpack-tasks');
+const tripleGulp = require('meister-js-dev').gulp;
+const webpackTask = require('meister-gulp-webpack-tasks');
 const webpackConfig = require('./webpack.config');
-const browserSyncTask = require('@npm-wearetriple/gulp-browsersync-task');
+const browserSyncTask = require('meister-gulp-browsersync-task');
 const packageConfig = require('./package.json');
 
 // building tasks
