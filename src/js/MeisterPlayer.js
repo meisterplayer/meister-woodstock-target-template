@@ -1,14 +1,14 @@
-import Meister from 'meisterplayer/index';
-import BaseMedia from 'meister-plugin-basemedia/index';
-import Html5Player from 'meister-plugin-html5player/index';
-import StandardUi from 'meister-plugin-standardui/index';
-import DebugOverlay from 'meister-plugin-debugoverlay/index';
-import NativeHls from 'meister-plugin-nativehls/index';
-import Hls from 'meister-plugin-hls/index';
-import Dash from 'meister-plugin-dash/index';
-import MultiSource from 'meister-plugin-multisource/index';
-import WebVtt from 'meister-plugin-webvtt/index';
-import Smooth from 'meister-plugin-smooth/index';
+import Meister from '@meisterplayer/meisterplayer/index';
+import BaseMedia from '@meisterplayer/plugin-basemedia/index';
+import Html5Player from '@meisterplayer/plugin-html5player/index';
+import StandardUi from '@meisterplayer/plugin-standardui/index';
+import DebugOverlay from '@meisterplayer/plugin-debugoverlay/index';
+import NativeHls from '@meisterplayer/plugin-nativehls/index';
+import Hls from '@meisterplayer/plugin-hls/index';
+import Dash from '@meisterplayer/plugin-dash/index';
+import MultiSource from '@meisterplayer/plugin-multisource/index';
+import WebVtt from '@meisterplayer/plugin-webvtt/index';
+import Smooth from '@meisterplayer/plugin-smooth/index';
 
 
 
