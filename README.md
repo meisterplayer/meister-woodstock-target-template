@@ -1,154 +1,122 @@
-# Meisterplayer Targets #
+# Building and/or importing MeisterPlayer #
 
-## What is a target ##
-Meisterplayer consists of a Meister-Core, a collection of plugins and a target-project. The target project can be used to actually build an instance of the player or is used as environment to create/maintain plugins. It has been setup as a gulp environment which load the configured plugins and is capable of building/minifying the source using WebPack or run a (hot-reloading) webpack-webserver.
+## Definitions ##
 
-This readme is divided in 2 parts; the building of a Meisterplayer-distribution file (minified) and developing/maintaining Meisterplayer-plugins  
+### Meister - Target ###
+The project you are currently looking at. You need this if you want to build your own Meisterplayer-bundle and include it in your website. You can also use this project to do your own Meisterplayer development, do PR's or create a new plugin. 
 
-## Prerequisites ##
+*You do not need this project* if you have your own node development environment with browserify, rollup, webpack or such. You can `npm install` all needed modules and import them into your project. Check out the index.js file to get an idea of how to import and initialise Meister.
 
-For now we assume you are using a Mac of Linux machine. Using Windows to compile works but we haven't tested it ourselves.
-Furthermore you'd need;
+### Meister-core ###
+The Meister-core without plugins is nothing more as some utilities, the Meister-constructor and EventHandler. This is freely available from GitHub and can be installed from NPM
 
--  Node installed. The meisterplayer team uses v6.9.4 at the time of writing, other versions probably work but your mileage may vary.
--  NPM installed. 
--  Reasonable understanding of ES6
-  
-
-## Building a (custom) distribution of Meisterplayer ##
-
-With this template project you can create your own custom build of Meisterplayer with just the plugins you need.  To get up and running follow these steps
-
-- Check and install the prerequisites
-- Clone this project in to a folder of your choosing and CD in to it.
-- Review the dependencies as defined in `package.json`, remove the plugins you don't need.
-- Run `npm install` to install all npm modules
-- Open `src/js/MeisterPlayer` and remove the plugins you don't need
-- Build a distribution version using `npm run build:dist`
-
-You're done! The minified file is available in `/dist`
-
-
-
-## Developing and/or maintaining Meisterplayer Plugins ##
-
-
-### TL;DR ###
-To Setup the woodstock edition and it's plugins you can copy-paste the following GIST in a terminal:
-
-[See GIST](https://gist.github.com/buttonfreak/c0d3dd4b856b0328032153565d7c3fbf)
-
-### How does this work? ###
-If you're gearing up for some Meisterplayer plugin development you should use this project as main task runner. If all the plugins you need are imported and configured you technically only would need to keep this project open in a terminal to run `npm start` and monitor the output once in a while. The actual coding is done from one or more plugin-directory you usually cloned from GitHub and a are linked into this project. 
-
-Our ideal workflow (assuming this project is configured) is to open all plugins and Meister-core in Visual Studio Code, open the terminal in VSC and cd to this project, run `npm start` and get to work :-)
-
-### Start setting up ###
-
-##### Clone Meister from Github #####
-
-To get started working on existing plugins you need to clone those plugins and the meister-core from GitHub and store these file *outside* the target-template (if you have cloned the template already).
-
-- create a meister directory dedicated to the plugins and Meister core ;
+### Meister Core Plugins ###
+The open-source plugins you need to play media and control the player. These plugins are:
 
 ```
-mkdir meister && cd meister
-```
-
-- Clone Meister-core and core plugins;
-
-```
-git clone https://github.com/meisterplayer/meisterplayer.git
-git clone https://github.com/meisterplayer/media-basemedia.git
-git clone https://github.com/meisterplayer/player-html5player.git
-git clone https://github.com/meisterplayer/ui-standardui.git
-```
-
-- Clone any other plugins you might want to use, check out the meisterplayer-repo's on github;
+@meisterplayer/plugin-basemedia
+@meisterplayer/plugin-html5player
+@meisterplayer/plugin-debugoverlay
+@meisterplayer/plugin-message
+@meisterplayer/plugin-multisource
+@meisterplayer/plugin-standardui
 
 ```
-git clone https://github.com/meisterplayer/parser-multisource.git
-git clone https://github.com/meisterplayer/media-nativehls.git
-git clone https://github.com/meisterplayer/media-hls.git
-git clone https://github.com/meisterplayer/media-dash.git
-git clone https://github.com/meisterplayer/media-smooth.git
-git clone https://github.com/meisterplayer/parser-webvtt.git
-git clone https://github.com/meisterplayer/ui-debugoverlay.git 
-```
 
-##### Install plugin-dependencies ######
-
-In each plugin and in Meisterplayer-core you need to run `npm install`. This could take a while.
-
-##### Clone target template #####
-
-Next up; clone the target-template from GitHub if you haven't already
+### Optional free plugins ###
 
 ```
-git clone https://github.com/meisterplayer/meister-woodstock-target-template.git && cd meister-woodstock-target-template
+@meisterplayer/plugin-hls
+@meisterplayer/plugin-dash
+@meisterplayer/plugin-nativehls
+@meisterplayer/plugin-smooth
+@meisterplayer/plugin-webvtt
 ```
 
-Next; install dependencies by running `npm install`. This will also install all Meister-plugins though we don't need all of them directly, if you like to work on one or more plugins you should use `npm link` for that particular plugin. Using `npm link` NPM will symlink the source directory into the node-modules-folder, effectively removing the node_module installed by `npm install`. 
-So, let's say you want to work on `media-nativehls` you would have to enter;:
+### Commercial plugins ###
+These are not available through GitHub and/or NPM. The meister-team will provide you with a build of the plugins upon request. You can import these into your own project or in this boilerplate project.
 
-``` 
-npm link ../meister/media-nativehls 
-``` 
 
-*Change the path to reflect your folder-structure*, you can use both relative and absolute paths. If you link all plugins be prepared to have NPM slow down significantly, the filetree of the project will become quite large.
+## Building ##
+There are 4 ways of building Meisterplayer:
 
-##### The index, src/meisterplayer-file and importing the correct source-files #####
+1. Use this target-project and install the core/free plugins from NPM
+2. Use this target-project and `npm install` and `npm link` the modules so you can work on them
+3. Use this target-project and install the plugins using NPM but reference them to a specific GitHub branch or commit. If you would choose to reference the develop-branch you'd be running the bleeding edge version of Meister and the Core/Free plugins
+4. Do not use this target and include the modules in your own project.
 
-`index.js` is the npm-main file, it merely imports `src/meisterplayer.js` which contains the collection of plugins that are imported and compiled by WebPack. If you linked a plugin into the project webpack will only compile it's `src` directory if you import the index of the plugin like this;
+### 1. Just install using NPM ###
+Steps :
+
+- After cloning this project check whether you need all the plugins defined in package.json. Remove the ones you do not need. 
+-  Run `npm install`.
+-  Before moving on open `src/js/Meisterplayer.js` and remove the plugins you removed in package.json. Also remove the corresponding plugins in the `Meister.builtIn` statement.
+-  Open index.html and configure the player to your needs. 
+-  Your done!
+
+For a live-reloading webserver run `npm start`. If you want to build a minified dist version, run `npm run build:dist` you'll find a minified bundle in the `dist`-folder
+
+### 2. NPM Link the modules ###
+See DEVELOP.md 
+
+### 3. Bleeding edge GitHub ###
+Instead of using the stable NPM packages you can live life on the bleeding edge and refer to github branches or commits. Follow the procedure of 1, only change the dependencies in package.json like so:
 
 ```
-import NativeHls from '@npm-wearetriple/meister-plugin-nativehls/index';
+  "dependencies": {
+    "@meisterplayer/meisterplayer": "git://github.com/meisterplayer/meisterplayer.git#develop",
+    "@meisterplayer/plugin-basemedia": "^5.0.2",
+    "@meisterplayer/plugin-dash": "^5.0.1",
+    "@meisterplayer/plugin-html5player": "^5.1.0",
+    "@meisterplayer/plugin-multisource": "^5.0.1",
+    "@meisterplayer/plugin-nativehls": "^5.0.1",
+    "@meisterplayer/plugin-smooth": "^5.0.1",
+    "@meisterplayer/plugin-standardui": "git://github.com/meisterplayer/ui-standardui.git#feature\/chromecast-button-bottom-bar", // reference a specific branch
+    "@meisterplayer/plugin-webvtt": "^5.0.1"
+  }
+
 ```
 
-If you want to import the dist-file (created when you use `npm run dist` from the plugin) from the linked plugin you should remove the reference to `index` like this;
+
+### 4. Import into your own project ###
+Instead of building separately from your own project you can install Meisterplayer and it's plugins in your project using `npm install`:
 
 ```
-import NativeHls from '@npm-wearetriple/meister-plugin-nativehls';
+npm i --save @meisterplayer/meisterplayer @meisterplayer/plugin-basemedia @meisterplayer/plugin-dash @meisterplayer/plugin-html5player @meisterplayer/plugin-multisource @meisterplayer/plugin-nativehls @meisterplayer/plugin-smooth @meisterplayer/plugin-standardui @meisterplayer/plugin-webvtt
+
 ```
 
-Webpack will also supply a webserver with hot-reloading, but please note that hot-reloading will only work if you reference the index-file of the plugin. 
+You should import the plugins and meister-core in one file and load the plugins using the Meister.builtIn statement like so;
 
-*You should now be ready to start working on plugins development*
-
-### Update after switching branches ###
-
-If you checkout a branch of a plugin that has new dependencies you should update the node-modules. This can be done by cd'ing to the plugin-directory (the target of the NPM-link) and enter `npm update` . The package list should be updated to reflect the changes in dependencies. 
-
-
-## NPM Tasks ##
-
-`npm start`
-Starts a browserSync server and hot-reloading 
-
-`npm run build` 
-Transpiles a non minified version using webpack
-
-`npm run build:dist`
-Transpiles and minifies a version using webpack
-
-`npm run min`
-Transpiles and minifies a version using webpack and puts it in /dist
-
-`npm run jsdocs`
-Creates API docs using JSDoc
-
-`npm run bump`
-Bumps version
-
-`npm run changelog`
-Creates a changelogs from transactional git logs
+```
+import Meister from '@meisterplayer/meisterplayer/index';
+import BaseMedia from '@meisterplayer/plugin-basemedia/index';
+import Html5Player from '@meisterplayer/plugin-html5player/index';
+import StandardUi from '@meisterplayer/plugin-standardui/index';
+import DebugOverlay from '@meisterplayer/plugin-debugoverlay/index';
+import NativeHls from '@meisterplayer/plugin-nativehls/index';
+import Hls from '@meisterplayer/plugin-hls/index';
+import Dash from '@meisterplayer/plugin-dash/index';
+import MultiSource from '@meisterplayer/plugin-multisource/index';
+import WebVtt from '@meisterplayer/plugin-webvtt/index';
+import Smooth from '@meisterplayer/plugin-smooth/index';
 
 
-## Problems? ##
-_I don't have hot-reloading when I save something in `plugin-xx`_
 
-Check whether you have linked `plugin-xx` into the template project and you import the `index` of the plugin.
+Meister.builtIn = {
+    [Html5Player.pluginName]: {},
+    [BaseMedia.pluginName]: {},
+    [StandardUi.pluginName]: {},
+    [NativeHls.pluginName]: {},
+    [Hls.pluginName]: {},
+    [Dash.pluginName]: {},
+    [MultiSource.pluginName]: {},
+    [WebVtt.pluginName]: {},
+    [Smooth.pluginName]: {},
+    [DebugOverlay.pluginName]: {},
+};
 
+Meister.Configuration.overwrite(Meister.builtIn);
+```
 
-### Todo
-Create and configure test-tasks
+Where you import this or how you want to include the library in your project is entirely up to you. Please be aware that using this method will decrease the Meister-core team ability to debug your application. So if you have a support contract and need support, be sure to create a single bundle for meisterplayer (types 1,2,3) and import in your code. This way we are still capable of injecting a debugbuild using Charles proxy.
