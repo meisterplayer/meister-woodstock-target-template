@@ -102,7 +102,6 @@ import WebVtt from '@meisterplayer/plugin-webvtt/index';
 import Smooth from '@meisterplayer/plugin-smooth/index';
 
 
-
 Meister.builtIn = {
     [Html5Player.pluginName]: {},
     [BaseMedia.pluginName]: {},
@@ -120,3 +119,18 @@ Meister.Configuration.overwrite(Meister.builtIn);
 ```
 
 Where you import this or how you want to include the library in your project is entirely up to you. Please be aware that using this method will decrease the Meister-core team ability to debug your application. So if you have a support contract and need support, be sure to create a single bundle for meisterplayer (types 1,2,3) and import in your code. This way we are still capable of injecting a debugbuild using Charles proxy.
+
+#### Important: Es6 transpiling ####
+Please note the imports reference to `index` which essentially means they import the es6-source files, your project must be setup to transpile ES6 (babel). If it has been setup with babel you will get the benefit of optimalisations your transpiler/packager has in place.
+If you do not use ES6 but wish to package your project with minified meister-code you should remove the reference to `/index` at every import-stagement.
+*Commercial plugins are transpiled and minified*
+
+## CLI Reference ##
+
+- `npm start` : start development server 
+- `npm run build` : create bundle without minify
+- `npm run dist` : create dist bundle, with minify
+- `npm run jsdoc` : create documentation from JSDoc blocks
+- `npm run bump` : bump version (either  --minor or --major )
+- `npm run changelog` : append commits to changelog with conventional changelogs (see [http://notebook.aaronwest.net/2015/08/03/better-documentation-using-conventional-changelog.html]() )
+- `npm run generate-docs` Generate documentation from installed plugins. *might be buggy at this time*
