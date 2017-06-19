@@ -19,7 +19,7 @@ Furthermore you'd need;
 ### TL;DR ###
 To Setup the woodstock edition and it's plugins you can copy-paste the following GIST in a terminal:
 
-[See GIST](https://gist.github.com/buttonfreak/72a069e977b8187b56f87e5337eee2ec)
+[See GIST](https://gist.github.com/buttonfreak/c0d3dd4b856b0328032153565d7c3fbf)
 
 ### How does this work? ###
 If you're gearing up for some Meisterplayer plugin development you should use this project as main task runner. If all the plugins you need are imported and configured you technically only would need to keep this project open in a terminal to run `npm start` and monitor the output once in a while. The actual coding is done from one or more plugin-directory you usually cloned from GitHub and a are linked into this project. 
@@ -71,7 +71,7 @@ Next up; clone the target-template from GitHub if you haven't already
 git clone https://github.com/meisterplayer/meister-target-template.git && cd meister-target-template
 ```
 
-Next; install dependencies by running `npm install`. This will also install all Meister-plugins though we don't need all of them directly, if you like to work on one or more plugins you should use `npm link` for that particular plugin. Using `npm link` NPM will symlink the source directory into the node-modules-folder, effectively removing the node_module installed by `npm install`. 
+Next; install dependencies by running `npm install`. This will also install all Meister-plugins though we don't need all of them directly, if you like to work on one or more plugins you should use `npm i -s ../meister/plugin-name` for that particular plugin. Using `npm i -s file` NPM will symlink the source directory into the node-modules-folder, effectively removing the node_module installed by `npm install`. 
 So, let's say you want to work on `media-nativehls` you would have to enter;:
 
 ``` 
