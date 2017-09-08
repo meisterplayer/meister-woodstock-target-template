@@ -1,5 +1,7 @@
 # Building and/or importing MeisterPlayer #
 
+_Warning_ : if you don't know anything about Node, NPM and just want a Video/Audio player for your website, you should read [this](https://github.com/meisterplayer/meisterplayer/wiki/Installation-without-NPM)
+
 ## Prerequisites ##
 
 - NodeJS > v6.9.4 
@@ -89,7 +91,7 @@ Instead of using the stable NPM packages you can live life on the bleeding edge 
 Instead of building separately from your own project you can install Meisterplayer and it's plugins in your project using `npm install`:
 
 ```
-npm i -s @meisterplayer/meisterplayer @meisterplayer/plugin-basemedia @meisterplayer/plugin-dash @meisterplayer/plugin-html5player @meisterplayer/plugin-multisource @meisterplayer/plugin-nativehls @meisterplayer/plugin-smooth @meisterplayer/plugin-standardui @meisterplayer/plugin-webvtt
+npm i  @meisterplayer/meisterplayer @meisterplayer/plugin-basemedia @meisterplayer/plugin-dash @meisterplayer/plugin-html5player @meisterplayer/plugin-multisource @meisterplayer/plugin-nativehls @meisterplayer/plugin-smooth @meisterplayer/plugin-standardui @meisterplayer/plugin-webvtt
 
 ```
 
