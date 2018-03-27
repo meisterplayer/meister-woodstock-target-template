@@ -2,17 +2,71 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Development Target for Meister</title>
+        <title>Development Target for Meister V5+</title>
         <script src="build/meister.bundled.js" charset="utf-8"></script>
+
     </head>
     <body>
-        <div id="meister"></div>
+        <div id="meister" style="height:400px;"></div>
         <script type="text/javascript">
-            var meister = new Meister('#meister');
+            var meister = new Meister('#meister', {
+                global: {
+                    autoplay: false,
+                }
+            });
 
-            meister.setItem({
-                src:'http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4',
-                type: 'mp4'
+            // create playlist
+            // meister.setPlaylist([
+            //     {
+            //         src: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+            //         type: 'm3u8'
+            //     }
+            // ]);
+
+            // set Video URL for one single item
+            meister.setItem(
+                {
+                    src: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8',
+                    type: 'm3u8'
+                }
+            );
+
+            // Get URL of video (async, only available when the item is loaded into the player;
+            meister.on('playerTimeUpdate', function(e){
+                var curr = e.currentTime;
+                var duration = e.duration;
+                console.log("Current time:" + curr + ", duration:" + duration );
+            });
+
+            // Current Time Event
+            meister.on('itemLoaded', function(){
+                var currItem = meister.currentItem;
+                console.log("URL of video: " + currItem.src);
+            });
+
+            // Play Event
+            meister.on('playerPlay', function(){
+                console.log("Playerplay!");
+            });
+
+            meister.on('playerPause', function(){
+                console.log("Player pause!");
+            });
+
+            meister.on('requestSeek', function(e){
+                console.log("Player seek!", e);
+            });
+
+            meister.on('playerSeek', function(e){
+                console.log("Player seeked!", e);
+            });
+
+            meister.on('playerBuffering', function(e){
+                console.log('Player buffering', e)
+            });
+
+            meister.on('playerBufferedEnough', function(e){
+                console.log('Player buffered enough', e)
             });
 
             meister.load();
